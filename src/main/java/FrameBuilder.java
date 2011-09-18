@@ -102,8 +102,13 @@ public class FrameBuilder {
 	private static JComboBox<?> lnfComboBox() {
 		final JComboBox<LnfLoader> skinSelector = new JComboBox<LnfLoader>();
 
+		String currentName = UIManager.getLookAndFeel().getName();
 		for (LookAndFeelInfo lookAndFeel : UIManager.getInstalledLookAndFeels()) {
-			skinSelector.addItem(standard(lookAndFeel));
+			LnfLoader item = standard(lookAndFeel);
+			skinSelector.addItem(item);
+			if (currentName.equals(lookAndFeel.getName())) {
+				skinSelector.setSelectedItem(item);
+			}
 		}
 
 		Map<String, SkinInfo> skins = SubstanceLookAndFeel.getAllSkins();
