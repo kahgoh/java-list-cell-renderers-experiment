@@ -32,6 +32,7 @@ import javax.swing.UIManager.LookAndFeelInfo;
 import net.miginfocom.swing.MigLayout;
 
 import org.pushingpixels.substance.api.SubstanceLookAndFeel;
+import org.pushingpixels.substance.api.SubstanceSkin;
 import org.pushingpixels.substance.api.skin.SkinInfo;
 
 /**
@@ -102,6 +103,7 @@ public class FrameBuilder {
 	private static JComboBox<?> lnfComboBox() {
 		final JComboBox<LnfLoader> skinSelector = new JComboBox<LnfLoader>();
 
+		// Add the options for the Java look and feels.
 		String currentName = UIManager.getLookAndFeel().getName();
 		for (LookAndFeelInfo lookAndFeel : UIManager.getInstalledLookAndFeels()) {
 			LnfLoader item = standard(lookAndFeel);
@@ -111,11 +113,21 @@ public class FrameBuilder {
 			}
 		}
 
+		// Add the options for the Substance look and feels.
 		Map<String, SkinInfo> skins = SubstanceLookAndFeel.getAllSkins();
+		SubstanceSkin currentSkin = SubstanceLookAndFeel.getCurrentSkin();
+		
 		for (SkinInfo skin : skins.values()) {
-			skinSelector.addItem(substance(skin));
+			LnfLoader item = substance(skin);
+			skinSelector.addItem(item);
+			if (currentSkin != null) {
+				if (currentSkin.getClass().getName().equals(skin.getClassName())) {
+					skinSelector.setSelectedItem(item);
+				}
+			}
 		}
 
+		// Action listener to swap change the look and feels.
 		skinSelector.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {

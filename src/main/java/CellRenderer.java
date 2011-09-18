@@ -45,6 +45,8 @@ public class CellRenderer {
 				try {
 					UIManager.setLookAndFeel(UIManager
 							.getSystemLookAndFeelClassName());
+					
+//					SubstanceLookAndFeel.setSkin("org.pushingpixels.substance.api.skin.RavenSkin");
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
