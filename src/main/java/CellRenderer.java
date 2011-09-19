@@ -53,16 +53,16 @@ public class CellRenderer {
 
 				FrameBuilder builder = new FrameBuilder();
 				builder.addRendererInstaller("Unchanged", null);
-				builder.addRendererInstaller("Basic Renderer Based",
+				builder.addRendererInstaller("Basic",
 						installer(basicRendererBased()));
-				builder.addRendererInstaller("Substance Renderer Based",
-						installer(substanceRendererBased()));
-				builder.addRendererInstaller("Default Renderer Based",
-						installer(defaultRendererBased()));
-				builder.addRendererInstaller("Replacing Default", replacingDefault());
-				builder.addRendererInstaller("Static Delegate", staticDelegating());
-				builder.addRendererInstaller("Replacing Delegating Renderer",
-						replacingDelegating());
+				builder.addRendererInstaller("Substance",
+						installer(substance()));
+				builder.addRendererInstaller("Static Default",
+						installer(staticDefault()));
+				builder.addRendererInstaller("Refreshing Default", refreshingDefault());
+				builder.addRendererInstaller("Static Delegate", staticDelegate());
+				builder.addRendererInstaller("Refreshing Delegate",
+						refreshingDelegating());
 				builder.build().setVisible(true);
 			}
 		});
@@ -95,7 +95,7 @@ public class CellRenderer {
 	 * 
 	 * @return the created {@link ListCellRenderer}
 	 */
-	private static ListCellRenderer<? super Fruit> defaultRendererBased() {
+	private static ListCellRenderer<? super Fruit> staticDefault() {
 
 		return new DefaultListCellRenderer() {
 
@@ -118,7 +118,7 @@ public class CellRenderer {
 	 * 
 	 * @return the created {@link ListCellRenderer}
 	 */
-	private static ListCellRenderer<? super Fruit> substanceRendererBased() {
+	private static ListCellRenderer<? super Fruit> substance() {
 
 		return new SubstanceDefaultListCellRenderer() {
 
@@ -158,7 +158,7 @@ public class CellRenderer {
 	 * 
 	 * @return the created {@link RendererInstaller}
 	 */
-	private static RendererInstaller staticDelegating() {
+	private static RendererInstaller staticDelegate() {
 		return new RendererInstaller() {
 			public void installRenderer(JComboBox<Fruit> comboBox) {
 				final ListCellRenderer<? super Object> original = new JComboBox<Object>()
@@ -185,7 +185,7 @@ public class CellRenderer {
 	 * 
 	 * @return the created {@link RendererInstaller}
 	 */
-	private static RendererInstaller replacingDelegating() {
+	private static RendererInstaller refreshingDelegating() {
 		return new RendererInstaller() {
 
 			public void installRenderer(JComboBox<Fruit> comboBox) {
@@ -201,7 +201,7 @@ public class CellRenderer {
 	 * 
 	 * @return the created {@link RendererInstaller}
 	 */
-	private static RendererInstaller replacingDefault() {
+	private static RendererInstaller refreshingDefault() {
 		return new RendererInstaller() {
 
 			public void installRenderer(final JComboBox<Fruit> comboBox) {

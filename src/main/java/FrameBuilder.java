@@ -25,6 +25,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JSeparator;
+import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
@@ -90,6 +91,11 @@ public class FrameBuilder {
 			}
 			contents.add(comboBox, "wrap, sgx combo");
 		}
+		
+		// Add a text field to help remove focus from the combo boxes.
+		contents.add(new JSeparator(JSeparator.HORIZONTAL), "sx 2, growx 100, pushx, wrap");
+		contents.add(new JLabel("Text field: "));
+		contents.add(new JTextField(), "grow, pushx");
 
 		frame.pack();
 		return frame;
