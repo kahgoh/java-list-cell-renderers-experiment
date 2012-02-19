@@ -9,7 +9,7 @@ Project Notes
 The code is checked in as an [Eclipse](http://www.eclipse.org) project and is configured with the [Maven][Maven] nature (using the [m2e](http://www.eclipse.org/m2e/) plugin). The project requires the following:
 
 * [MigLayout](http://www.miglayout.com)
-* [Substance](http://substance.java.net) (there is also a [GitHub repository](https://github.com/kirillcool/substance) for it)
+* [Substance](http://insubstantial.posterous.com) (there is also a [GitHub repository](https://github.com/Insubstantial/insubstantial) for it)
 
 If wish to run the program, the main class is `CellRenderers`.
 
